@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432" # Exposes Postgres to your host machine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=trading
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379" # Exposes Redis to your host machine
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:
